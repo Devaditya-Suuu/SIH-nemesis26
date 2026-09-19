@@ -19,7 +19,7 @@ export function createApplicationViewer({ container, creditContainer }) {
     baseLayer: false,
     creditContainer,
     msaaSamples: 4,
-    contextOptions: { webgl: { preserveDrawingBuffer: true } },
+    contextOptions: { webgl: { powerPreference: 'high-performance' } },
   });
   try {
     viewer.targetFrameRate = 60;

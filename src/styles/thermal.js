@@ -98,12 +98,14 @@ export const thermalShader = {
     }
 
     float digit(vec2 p, int d) {
-      int masks[10] = int[10](0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x7B);
-      int m = masks[d];
       float s = 0.0;
-      for (int i = 0; i < 7; i++) {
-        if ((m >> (6 - i) & 1) == 1) s += segment(p, i);
-      }
+      if (d == 0 || d == 2 || d == 3 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) s += segment(p, 0);
+      if (d == 0 || d == 1 || d == 2 || d == 3 || d == 4 || d == 7 || d == 8 || d == 9) s += segment(p, 1);
+      if (d == 0 || d == 1 || d == 3 || d == 4 || d == 5 || d == 6 || d == 7 || d == 8 || d == 9) s += segment(p, 2);
+      if (d == 0 || d == 2 || d == 3 || d == 5 || d == 6 || d == 8 || d == 9) s += segment(p, 3);
+      if (d == 0 || d == 2 || d == 6 || d == 8) s += segment(p, 4);
+      if (d == 0 || d == 4 || d == 5 || d == 6 || d == 8 || d == 9) s += segment(p, 5);
+      if (d == 2 || d == 3 || d == 4 || d == 5 || d == 6 || d == 8 || d == 9) s += segment(p, 6);
       return clamp(s, 0.0, 1.0);
     }
 
