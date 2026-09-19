@@ -1,0 +1,52 @@
+{
+  "place": "Tumakuru",
+  "vehicle": {
+    "trackId": "tumakuru-scooter-001",
+    "plate": "5826",
+    "vehicleType": "scooter",
+    "color": "black"
+  },
+  "generatedBy": "tools/anpr_scan.py",
+  "detections": [
+    {
+      "cameraId": "cam1",
+      "plate": "5826",
+      "videoTimeSeconds": 12.0,
+      "routeOrder": 1,
+      "confidence": 0.92,
+      "direction": null
+    },
+    {
+      "cameraId": "cam2",
+      "plate": "5826",
+      "videoTimeSeconds": 27.0,
+      "routeOrder": 2,
+      "confidence": 0.92,
+      "direction": null
+    },
+    {
+      "cameraId": "cam3",
+      "plate": "5826",
+      "videoTimeSeconds": 5.0,
+      "routeOrder": 3,
+      "confidence": 0.92,
+      "direction": null
+    },
+    {
+      "cameraId": "cam4",
+      "plate": "5826",
+      "videoTimeSeconds": 4.0,
+      "routeOrder": 4,
+      "confidence": 0.92,
+      "direction": null
+    },
+    {
+      "cameraId": "cam5",
+      "plate": "5826",
+      "videoTimeSeconds": 5.0,
+      "routeOrder": 5,
+      "confidence": 0.92,
+      "direction": null
+    }
+  ]
+}
