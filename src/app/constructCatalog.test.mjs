@@ -62,8 +62,8 @@ test('catalogs construct distinct layers and classification from their supplied 
   }
   assert.equal(
     rows.find((row) => row.id === 'flights')?.showInTogglePanel,
-    true,
-    'ordinary data layer entries remain visible',
+    false,
+    'Live Flights remains registered but is absent from Data Layers',
   );
   assert.deepEqual(
     first.layers.map(({ id }) => id),

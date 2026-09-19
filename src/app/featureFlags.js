@@ -1,6 +1,7 @@
 /** Layers intentionally disabled for this deployment. */
 export const DISABLED_LAYER_IDS = Object.freeze([
   'satellites',
+  'flights',
   'military',
   'ais-live-vessels',
   'transit',
