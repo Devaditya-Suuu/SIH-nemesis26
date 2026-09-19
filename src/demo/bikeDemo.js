@@ -24,7 +24,6 @@ function cameraPosition(camera) {
 export function initBikeDemo({ viewer, signal, documentRef = document } = {}) {
   const panel = documentRef.getElementById('bike-demo-panel');
   if (!panel || !viewer) return null;
-  const exitButton = panel.querySelector('[data-bike-demo-exit]');
   const collapseButton = panel.querySelector(
     '[data-collapse-target="bike-demo-panel"]',
   );
@@ -130,27 +129,10 @@ export function initBikeDemo({ viewer, signal, documentRef = document } = {}) {
   };
 
   const onAbort = () => destroy();
-  const onCollapseFallback = () => {
-    const wasCollapsed = panel.classList.contains('collapsed');
-    queueMicrotask(() => {
-      if (!destroyed && panel.classList.contains('collapsed') === wasCollapsed)
-        panel.classList.toggle('collapsed', !wasCollapsed);
-    });
-  };
-  const exitDemo = () => {
-    video?.pause();
-    cameraDataSource.show = false;
-    const route = viewer.entities.getById('bike-demo-route');
-    if (route) viewer.entities.remove(route);
-    panel.querySelector('[data-collapse-target="bike-demo-panel"]')?.click();
-    setStatus('ANPR demo closed');
-  };
   const destroy = () => {
     if (destroyed) return;
     destroyed = true;
     signal?.removeEventListener('abort', onAbort);
-    exitButton?.removeEventListener('click', exitDemo);
-    collapseButton?.removeEventListener('click', onCollapseFallback);
     searchButton?.removeEventListener('click', searchPlace);
     search?.removeEventListener('keydown', onSearchKey);
     cameraSelect?.removeEventListener('change', selectCamera);
@@ -172,8 +154,6 @@ export function initBikeDemo({ viewer, signal, documentRef = document } = {}) {
   const playVideo = () => video?.play().catch(() => {});
 
   searchButton?.addEventListener('click', searchPlace);
-  exitButton?.addEventListener('click', exitDemo);
-  collapseButton?.addEventListener('click', onCollapseFallback);
   search?.addEventListener('keydown', onSearchKey);
   cameraSelect?.addEventListener('change', selectCamera);
   playButton?.addEventListener('click', playVideo);

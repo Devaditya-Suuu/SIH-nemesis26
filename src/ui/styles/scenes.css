@@ -78,7 +78,7 @@
 #left-panel-stack > #data-panel:not(.collapsed) .data-panel-inner,
 #left-panel-stack > #cctv-panel:not(.collapsed) .cctv-panel-inner,
 #left-panel-stack > #scene-panel:not(.collapsed) .scene-panel-inner,
-#left-panel-stack > #bike-demo-panel:not(.collapsed) .scene-panel-inner {
+#left-panel-stack > #bike-demo-panel:not(.collapsed) .bike-demo-panel-inner {
   height: 100%;
   max-height: 100%;
 }
@@ -88,7 +88,8 @@
 }
 
 #left-panel-stack > #cctv-panel:not(.collapsed) .cctv-panel-inner,
-#left-panel-stack > #scene-panel:not(.collapsed) .scene-panel-inner {
+#left-panel-stack > #scene-panel:not(.collapsed) .scene-panel-inner,
+#left-panel-stack > #bike-demo-panel:not(.collapsed) .bike-demo-panel-inner {
   overflow-y: auto;
   scrollbar-gutter: stable;
 }
@@ -523,6 +524,10 @@
 #scene-panel.collapsed .scene-shot-list,
 #scene-panel.collapsed .scene-progress,
 #scene-panel.collapsed #scene-status,
+#bike-demo-panel.collapsed .cctv-controls,
+#bike-demo-panel.collapsed .bike-demo-frame-wrap,
+#bike-demo-panel.collapsed .bike-demo-source-badge,
+#bike-demo-panel.collapsed .bike-demo-status,
 #param-slider-panel.collapsed #param-sliders,
 #location-bar.collapsed .poi-row-container,
 #location-bar.collapsed .location-bar-divider,
@@ -532,7 +537,8 @@
 
 #data-panel.collapsed,
 #cctv-panel.collapsed,
-#scene-panel.collapsed {
+#scene-panel.collapsed,
+#bike-demo-panel.collapsed {
   width: var(--left-collapsed-width);
 }
 
@@ -543,7 +549,8 @@
 #data-panel.collapsed .panel-title,
 #cctv-panel.collapsed .panel-title,
 #radio-panel.collapsed .panel-title,
-#scene-panel.collapsed .panel-title {
+#scene-panel.collapsed .panel-title,
+#bike-demo-panel.collapsed .panel-title {
   font-size: 8px;
   letter-spacing: 1.8px;
 }
@@ -553,6 +560,7 @@
 #cctv-panel.collapsed .cctv-panel-inner,
 #radio-panel.collapsed .radio-panel-inner,
 #scene-panel.collapsed .scene-panel-inner,
+#bike-demo-panel.collapsed .bike-demo-panel-inner,
 #param-slider-panel.collapsed,
 #location-bar.collapsed .location-inner {
   padding-bottom: 10px;
@@ -564,6 +572,7 @@
 #radio-panel.collapsed .panel-header,
 #global-context-panel.collapsed .panel-header,
 #scene-panel.collapsed .panel-header,
+#bike-demo-panel.collapsed .panel-header,
 #param-slider-panel.collapsed .param-panel-header {
   margin-bottom: 2px;
 }
