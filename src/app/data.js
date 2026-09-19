@@ -1,5 +1,6 @@
 import { LayerLifecycle } from '../data/lifecycle.js';
 import { LayerPresentation } from './layerPresentation.js';
+import { DISABLED_LAYER_IDS } from './featureFlags.js';
 /** Register the application layer catalog before allowing state restoration. */
 export function createApplicationData({
   scene: { viewer, mapStackController },
@@ -12,6 +13,7 @@ export function createApplicationData({
   // Initialize data layer manager
   const dataManager = new LayerLifecycle(viewer, {
     allowQaRegistration,
+    disabledLayerIds: DISABLED_LAYER_IDS,
   });
   defer(async () => {
     await dataManager.destroyAll();

@@ -16,10 +16,10 @@
     <div class="first-run-choices">
       <button type="button" data-first-run-choice="contacts">
         <span class="material-symbols-outlined" aria-hidden="true">radar</span>
-        <span><strong>LIVE CONTACTS</strong><small>Aircraft, vessels and nearby intelligence</small></span>
+        <span><strong>LIVE CONTACTS</strong><small>Aircraft and nearby intelligence</small></span>
         <span class="material-symbols-outlined first-run-arrow" aria-hidden="true">arrow_forward</span>
       </button>
-      <button type="button" data-first-run-choice="space-missions">
+      <button type="button" data-first-run-choice="space-missions" hidden>
         <span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span>
         <span><strong>SPACE MISSIONS</strong><small>Launches, spacecraft and orbital context</small></span>
         <span class="material-symbols-outlined first-run-arrow" aria-hidden="true">arrow_forward</span>
@@ -30,7 +30,7 @@
         <!-- Subcopy names BOTH feeds this tile turns on, because the launcher
              optimizes for the fully configured experience (owner ruling,
              2026-08-23) — see the mission table in src/firstRunExperience.js. -->
-        <span><strong data-first-run-environmental-title>ENVIRONMENTAL</strong><small>Live earthquakes and active fires, from USGS and NASA</small></span>
+        <span><strong data-first-run-environmental-title>ENVIRONMENTAL</strong><small>Active fires from NASA</small></span>
         <span class="material-symbols-outlined first-run-arrow" aria-hidden="true">arrow_forward</span>
       </button>
       <button type="button" class="first-run-explore" data-first-run-choice="explore">

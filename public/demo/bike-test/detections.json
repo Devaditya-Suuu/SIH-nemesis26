@@ -1,0 +1,46 @@
+{
+  "place": "Tumakuru",
+  "vehicle": {
+    "trackId": "tumakuru-scooter-001",
+    "plate": "5826",
+    "vehicleType": "scooter",
+    "color": "black"
+  },
+  "detections": [
+    {
+      "cameraId": "cam1",
+      "videoTimeSeconds": 12,
+      "routeOrder": 1,
+      "confidence": 0.96,
+      "direction": "southeast"
+    },
+    {
+      "cameraId": "cam2",
+      "videoTimeSeconds": 27,
+      "routeOrder": 2,
+      "confidence": 0.95,
+      "direction": "southeast"
+    },
+    {
+      "cameraId": "cam3",
+      "videoTimeSeconds": 5,
+      "routeOrder": 3,
+      "confidence": 0.94,
+      "direction": "southeast"
+    },
+    {
+      "cameraId": "cam4",
+      "videoTimeSeconds": 4,
+      "routeOrder": 4,
+      "confidence": 0.93,
+      "direction": "north"
+    },
+    {
+      "cameraId": "cam5",
+      "videoTimeSeconds": 5,
+      "routeOrder": 5,
+      "confidence": 0.94,
+      "direction": "northwest"
+    }
+  ]
+}

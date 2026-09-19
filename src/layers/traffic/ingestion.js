@@ -13,6 +13,48 @@ export function createIngestion({
 }) {
   const { fetchFlowForBounds } = source;
 
+  function directFlowRoadType(value) {
+    const type = String(value || '').toLowerCase();
+    if (type.includes('motorway')) return 'motorway';
+    if (type.includes('trunk')) return 'trunk';
+    if (type.includes('primary')) return 'primary';
+    if (type.includes('secondary')) return 'secondary';
+    if (type.includes('tertiary')) return 'tertiary';
+    return 'unclassified';
+  }
+
+  async function renderDirectFlowFallback(clamped, generation, altitude, trace) {
+    if (!layerState._liveMode || !layerState._enabled) return false;
+    const segments = await fetchFlowForBounds(clamped, {
+      signal: layerState._activeFetchAbort?.signal,
+    });
+    if (generation !== layerState._loadGeneration || !segments.length)
+      return false;
+    const roads = layerState._parseRoads({
+      roads: segments.map((segment) => ({
+        coordinates: segment.coords,
+        type: directFlowRoadType(segment.roadType),
+        oneway: 0,
+      })),
+    }, trace);
+    for (const [index, road] of roads.entries()) {
+      const segment = segments[index];
+      road.flow = {
+        level: segment.trafficLevel,
+        closure: segment.closure,
+      };
+    }
+    parts.rendering.renderRoadsForAltitude(
+      roads,
+      altitude,
+      'TomTom direct flow',
+      trace,
+    );
+    layerState._flowCoveragePct = 100;
+    layerState._flowError = null;
+    return true;
+  }
+
   /**
    * Fetch road geometries from the Overpass API via the local proxy.
    *
@@ -307,6 +349,26 @@ export function createIngestion({
       renderedSomething = true;
     } catch (e) {
       if (e?.name === 'AbortError') return;
+      if (generation === layerState._loadGeneration && !renderedSomething) {
+        try {
+          renderedSomething = await renderDirectFlowFallback(
+            clamped,
+            generation,
+            altitude,
+            trace,
+          );
+          if (renderedSomething)
+            console.warn(
+              '[Data:Traffic] Road graph unavailable; rendered TomTom flow geometry directly',
+            );
+        } catch (fallbackError) {
+          if (fallbackError?.name === 'AbortError') return;
+          console.warn(
+            '[Data:Traffic] Direct TomTom flow fallback failed:',
+            fallbackError,
+          );
+        }
+      }
       if (generation === layerState._loadGeneration && !renderedSomething)
         layerState._roadError = 'Road data temporarily unavailable';
       console.warn('[Data:Traffic] Fetch error:', e);

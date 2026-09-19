@@ -1,0 +1,42 @@
+[
+  {
+    "id": "cam1",
+    "video": "cam1.mp4",
+    "name": "Camera 1",
+    "latitude": 13.3297956,
+    "longitude": 77.1294710,
+    "heading": 140
+  },
+  {
+    "id": "cam2",
+    "video": "cam2.mp4",
+    "name": "Camera 2",
+    "latitude": 13.3327050,
+    "longitude": 77.1259600,
+    "heading": 110
+  },
+  {
+    "id": "cam3",
+    "video": "cam3.mp4",
+    "name": "Camera 3",
+    "latitude": 13.3350516,
+    "longitude": 77.1221412,
+    "heading": 110
+  },
+  {
+    "id": "cam4",
+    "video": "cam4.mp4",
+    "name": "Camera 4",
+    "latitude": 13.3336240,
+    "longitude": 77.1213647,
+    "heading": 0
+  },
+  {
+    "id": "cam5",
+    "video": "cam5.mp4",
+    "name": "Camera 5",
+    "latitude": 13.3323921,
+    "longitude": 77.1225080,
+    "heading": 300
+  }
+]

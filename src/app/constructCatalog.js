@@ -22,6 +22,7 @@ import { createInfrastructureLayers } from '../data/infrastructure.js';
 import { localGeoJsonServices } from './localGeojsonServices.js';
 import { createBhoteKoshiEventLayer } from '../data/bhoteKoshiEvent.js';
 import { createBhoteKoshiLocatorLayer } from '../data/bhoteKoshiLocator.js';
+import { DISABLED_LAYER_ID_SET } from './featureFlags.js';
 
 const SOURCE_METHODS = Object.freeze({
   flights: ['getSnapshot'],
@@ -102,8 +103,7 @@ export function createApplicationCatalog({
     const satellites = createApplicationSatellites({
       source: sources.satellites,
     });
-    const catalog = createLayerCatalog(
-      [
+    const layers = [
         createBhoteKoshiEventLayer(),
         createBhoteKoshiLocatorLayer({
           boundaryResolver: nepalBoundaryResolver,
@@ -138,9 +138,11 @@ export function createApplicationCatalog({
           source: 'NASA FIRMS · LIVE',
           feed: sources.firms,
         }),
-      ],
-      metadata,
-    );
+      ];
+    for (const layer of layers) {
+      if (DISABLED_LAYER_ID_SET.has(layer.id)) layer.showInTogglePanel = false;
+    }
+    const catalog = createLayerCatalog(layers, metadata);
     return Object.freeze({ ...catalog, militaryRegistry, surface });
   } catch (error) {
     dispose();

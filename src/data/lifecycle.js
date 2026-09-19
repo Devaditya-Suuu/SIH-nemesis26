@@ -70,8 +70,12 @@ function refreshFailureFromStats(stats, label) {
  * for real-time data overlays on the CesiumJS globe.
  */
 export class LayerLifecycle {
-  constructor(viewer, { allowQaRegistration = false } = {}) {
+  constructor(
+    viewer,
+    { allowQaRegistration = false, disabledLayerIds = [] } = {},
+  ) {
     this.viewer = viewer;
+    this._disabledLayerIds = new Set(disabledLayerIds);
     this._activityListeners = new Set();
     this.layers = new Map(); // id → { module, enabled, initialized, intervalId, lifecycleState, lifecycleUncertain }
     this._listeners = new Set();
@@ -1072,6 +1076,8 @@ export class LayerLifecycle {
     const entry = this.layers.get(layerId);
     if (!entry) return { intentEpoch: null, promise: Promise.resolve() };
     const desiredState = Boolean(shouldEnable);
+    if (desiredState && this._disabledLayerIds.has(layerId))
+      return { intentEpoch: null, promise: Promise.resolve(false) };
     if (entry.destroying) {
       return {
         intentEpoch: null,
