@@ -1,6 +1,6 @@
 module.exports = {
   version: '3.6',
-  title: "God's Eye View",
+  title: "Trinetra",
   description: 'A live 3D intelligence console for planet Earth.',
   menu: async (kernel, info) => {
     const installed = await kernel.exists(__dirname, '.installed');

@@ -1,4 +1,4 @@
-# God's Eye View Current State
+# Trinetra Current State
 
 Vessel snapshot completeness is separate from freshness. A current snapshot with
 rejected or duplicate records shows PARTIAL with accepted/received counts; stale
@@ -300,7 +300,7 @@ sea-surface placement, click ownership and card selection policy are unchanged.
 
 ## Military-flight components and aircraft mechanics
 
-`gods-eye-view/layers/military` exports `createMilitaryFlightLayer`. It uses the
+`trinetra/layers/military` exports `createMilitaryFlightLayer`. It uses the
 same normalized observation contract as civil flights, with separate military
 classification, styling, model and tracking policy. Each instance owns its
 contacts, history, scratch objects, model loads and cancellation lifetime.
@@ -309,7 +309,7 @@ Applications supply the existing scene services and resolve model asset URLs;
 A source may retain a bounded stale-status reason; the standalone cached-feed
 behavior remains unchanged.
 
-`gods-eye-view/aircraft` exports the existing shared classification, icon,
+`trinetra/aircraft` exports the existing shared classification, icon,
 metadata, motion, altitude, model-anchor, proximity and selection calculations.
 It also exports `createMilitaryRegistry`, an explicitly constructed owner for
 known military identities and active-layer transitions. Its optional background
@@ -322,7 +322,7 @@ starts no network request. Both standalone aircraft layers use one registry.
 
 ## Civil-flight components
 
-`gods-eye-view/layers/flights` exports `createCivilFlightLayer`. Each instance
+`trinetra/layers/flights` exports `createCivilFlightLayer`. Each instance
 owns its contacts, histories, model collections, scratch objects and lifecycle.
 State, ingestion, enrichment, motion/floor interpolation, rendering, tracking and
 queries live in separate files under `src/layers/flights`. The standalone
@@ -339,7 +339,7 @@ camera, terrain floor, trail, selection and measured model-size policies remain.
 ## Browser live-source observations
 
 Flights, Military Flights and AIS Vessels obtain snapshots and optional history
-through `gods-eye-view/sources/live`. The standalone adapters use the existing
+through `trinetra/sources/live`. The standalone adapters use the existing
 same-origin routes. Aircraft observations distinguish barometric metres from
 WGS84 ellipsoid metres and retain source position/contact epochs; vessel records
 retain separate heading/course and sea-surface datum. History is a best-effort
@@ -367,7 +367,7 @@ Scene controls consume playback state and editing outcomes from the director.
 Progress updates carry a small playback snapshot and preserve shot-row identity;
 editing outcomes include a copy of the affected scene or shot. Subscriptions
 start with current state, isolate listener failures and stop on disposal.
-`gods-eye-view/scenes` exports the same director used by the standalone app.
+`trinetra/scenes` exports the same director used by the standalone app.
 
 ## UI shell and component ownership
 
@@ -3539,7 +3539,7 @@ are omitted rather than framing the wrong part of the globe.
 - A successful Pinokio install writes the owner-only `pinokio/.installed`
   marker. The nested launcher menu resolves that marker from its own directory:
   an absent marker exposes Install, a present marker exposes Start, and a
-  running server with a captured ready URL exposes Open God's Eye View.
+  running server with a captured ready URL exposes Open Trinetra.
 - Build gate: `npm run build`
 - Network access: local-only by default (`HOST=localhost` in dev-fresh.sh); LAN is an explicit opt-in via `HOST=0.0.0.0` (launcher prints a key-exposure warning + LAN URL; see SECURITY.md)
 - OpenSky default mode: OAuth (`OPENSKY_AUTH_MODE=oauth`; `anon` works without credentials)

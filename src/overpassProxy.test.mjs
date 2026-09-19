@@ -124,7 +124,7 @@ test('every mirror is asked with a User-Agent that identifies the application', 
     const agent = String(request.agent || '');
     assert.match(
       agent,
-      /^gods-eye-view\/\d/,
+      /^trinetra\/\d/,
       `${request.url} must name the application and its version`,
     );
     assert.ok(
@@ -144,7 +144,7 @@ test('a mirror that refuses the old label serves the same query under the identi
   // is answered with a 406 Not Acceptable HTML page before the query is read,
   // and the identifying one is served. This stub replays that shape so the
   // behaviour the header change buys is pinned without a live mirror.
-  const REFUSED = 'gods-eye-view-overpass-proxy/1.0';
+  const REFUSED = 'trinetra-overpass-proxy/1.0';
   const answer = (agent) =>
     String(agent || '').startsWith(REFUSED)
       ? {

@@ -1,6 +1,6 @@
 # Reusing infrastructure layers
 
-`gods-eye-view/infrastructure` exports `createInfrastructureLayers(services)`.
+`trinetra/infrastructure` exports `createInfrastructureLayers(services)`.
 It returns fresh datacenter and dam layers in that order, with the existing IDs,
 appearance, label budgets and bundled public datasets. Importing the module or
 calling the factory does not load data, create a viewer, or start the application.
@@ -10,7 +10,7 @@ base paths. This browser source export expects a Vite-compatible asset build.
 Pass the application's existing functions:
 
 ```js
-import { createInfrastructureLayers } from 'gods-eye-view/infrastructure';
+import { createInfrastructureLayers } from 'trinetra/infrastructure';
 
 const layers = createInfrastructureLayers({
   overlayHost: { setEntries, setVisible, clearSource },
